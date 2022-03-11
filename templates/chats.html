@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Chats{% endblock title %}
+
+{% block body %}
+
+    <div class="card-img-overlay py-2">
+
+      <style>
+        div.relative {
+          position: relative;
+          left: 235px;
+          top: 80px;
+          border: hidden;
+        }
+        o{
+          position: relative;
+          top: 70px;
+          color: aliceblue;
+        }
+        u{
+            color: rgba(209, 47, 47, 0.925);
+        }
+      </style>
+
+        <div class="container">
+            <h2 class="text-center"><b><u><o>Group - Chats</o></u></b></h2>
+        </div>
+
+        <div class="relative col-sm-7 mx-5 my-2">
+
+            <div class="row form-control g-2">
+
+                    {% if res %}
+
+                    {% for i in res %}
+
+                    {{i.cid}}
+                    
+                    {{i.msg}}
+
+                    {% if i.cimg  or i.cfile %}
+
+                    <img src='{{i.cimg.url}}' height="50" width="50">
+
+                    {{i.cfile}}
+
+                    {% endif %}
+
+                    {% endfor %}
+
+                    {% endif %}
+
+            </div>
+
+                <form class="my-4" method="POST" action="/chats" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                <input type="submit" value="send">
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <img src="/static/h.jpg" class="d-block" width="1366px" height="557px" alt="e1.jpg">
+
+
+    
+    
+{% endblock body %} 
